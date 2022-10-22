@@ -1,0 +1,36 @@
+──(root㉿Maxwell)-[/home/maxwell] └─# ifconfig
+
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST> mtu 1500 inet 192.168.1.51 netmask 255.255.255.0 broadcast 192.168.1.255 inet6 fe80::140a:97ff:fe63:8158 prefixlen 64 scopeid 0x20 ether 16:0a:97:63:81:58 txqueuelen 1000 (Ethernet) RX packets 98789 bytes 107278640 (102.3 MiB) RX errors 0 dropped 229 overruns 0 frame 0 TX packets 443216 bytes 23551636 (22.4 MiB) TX errors 0 dropped 0 overruns 0 carrier 0 collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING> mtu 65536 inet 127.0.0.1 netmask 255.0.0.0 inet6 ::1 prefixlen 128 scopeid 0x10 loop txqueuelen 1000 (Local Loopback) RX packets 92674 bytes 9810676 (9.3 MiB) RX errors 0 dropped 0 overruns 0 frame 0 TX packets 92674 bytes 9810676 (9.3 MiB) TX errors 0 dropped 0 overruns 0 carrier 0 collisions 0
+
+┌──(root㉿Maxwell)-[/home/maxwell] └─# ifconfig eth0 down
+
+┌──(root㉿Maxwell)-[/home/maxwell] └─# macchanger --help GNU MAC Changer Usage: macchanger [options] device
+
+-h, --help Print this help -V, --version Print version and exit -s, --show Print the MAC address and exit -e, --ending Don't change the vendor bytes -a, --another Set random vendor MAC of the same kind -A Set random vendor MAC of any kind -p, --permanent Reset to original, permanent hardware MAC -r, --random Set fully random MAC -l, --list[=keyword] Print known vendors -b, --bia Pretend to be a burned-in-address -m, --mac=XX:XX:XX:XX:XX:XX --mac XX:XX:XX:XX:XX:XX Set the MAC XX:XX:XX:XX:XX:XX
+
+Report bugs to https://github.com/alobbs/macchanger/issues
+
+┌──(root㉿Maxwell)-[/home/maxwell] └─# macchanger --random eth0 Current MAC: 16:0a:97:63:81:58 (unknown) Permanent MAC: 16:0a:97:63:81:58 (unknown) New MAC: 1e:e8:db:38:ef:f7 (unknown)
+
+┌──(root㉿Maxwell)-[/home/maxwell] └─# ifconfig eth0 up
+
+┌──(root㉿Maxwell)-[/home/maxwell] └─# ifconfig
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST> mtu 1500 inet 192.168.1.51 netmask 255.255.255.0 broadcast 192.168.1.255 inet6 fe80::1ce8:dbff:fe38:eff7 prefixlen 64 scopeid 0x20 ether 1e:e8:db:38:ef:f7 txqueuelen 1000 (Ethernet) RX packets 99948 bytes 108255700 (103.2 MiB) RX errors 0 dropped 239 overruns 0 frame 0 TX packets 443913 bytes 23693752 (22.5 MiB) TX errors 0 dropped 0 overruns 0 carrier 0 collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING> mtu 65536 inet 127.0.0.1 netmask 255.0.0.0 inet6 ::1 prefixlen 128 scopeid 0x10 loop txqueuelen 1000 (Local Loopback) RX packets 93001 bytes 9835360 (9.3 MiB) RX errors 0 dropped 0 overruns 0 frame 0 TX packets 93001 bytes 9835360 (9.3 MiB) TX errors 0 dropped 0 overruns 0 carrier 0 collisions 0
+
+┌──(root㉿Maxwell)-[/home/maxwell] └─# service NetworkManager reset
+
+----> Ikinci yontem olarak hard olarak degisim saglanabilir.
+
+┌──(root㉿Maxwell)-[/home/maxwell] └─# ifconfig eth0 hw ether 00:00:11:11:00:00
+
+┌──(root㉿Maxwell)-[/home/maxwell] └─# ifconfig eth0 up
+
+┌──(root㉿Maxwell)-[/home/maxwell] └─# ifconfig
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST> mtu 1500 inet 192.168.1.51 netmask 255.255.255.0 broadcast 192.168.1.255 inet6 fe80::1ce8:dbff:fe38:eff7 prefixlen 64 scopeid 0x20 ether 00:00:11:11:00:00 txqueuelen 1000 (Ethernet) RX packets 100272 bytes 108300787 (103.2 MiB) RX errors 0 dropped 239 overruns 0 frame 0 TX packets 444117 bytes 23702496 (22.6 MiB) TX errors 0 dropped 0 overruns 0 carrier 0 collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING> mtu 65536 inet 127.0.0.1 netmask 255.0.0.0 inet6 ::1 prefixlen 128 scopeid 0x10 loop txqueuelen 1000 (Local Loopback) RX packets 94014 bytes 9950245 (9.4 MiB) RX errors 0 dropped 0 overruns 0 frame 0 TX packets 94014 bytes 9950245 (9.4 MiB) TX errors 0 dropped 0 overruns 0 carrier 0 collisions 0
+
